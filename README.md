@@ -3,7 +3,7 @@
 ### :nail_care: Task Subtask Assignee Filter
 
 - Use `task_subtask_assignee:name` to filter for both tasks and subtasks assigned to `name`, add `status:open` at the end to exclude closed tasks.
-- Use `due_with_null:<today`, or whatever date to filter for tasks correspondinf to the search criterai, including tasks which do not have a due date.
+- Use `due_with_null:<today`, or whatever date to filter for tasks corresponding to the search criteria, including tasks which do not have a due date.
 
 ### :paperclip: Chainable Subtask Assignee Filter
 
