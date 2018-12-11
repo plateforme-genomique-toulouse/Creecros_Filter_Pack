@@ -21,3 +21,6 @@
 Example:
 - `task_subtask_assignee:name subtask:status:RUNNING status:open`
 
+### INSTALL
+- donwload in the plugin folder
+- unzip and renmae the folder to be named Creecros_Filter_Pack
