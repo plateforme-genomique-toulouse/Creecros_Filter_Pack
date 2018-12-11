@@ -36,6 +36,13 @@ class Plugin extends Base
                     ->setDatabase($c['db']));
             return $taskLexer;
         });
+        //DueDate with null Filter
+        $this->container->extend('taskLexer', function($taskLexer, $c) {
+            $taskLexer->withFilter(DateWithNull::getInstance()
+                    ->setDatabase($c['db'])
+                        ->setDateParser($c['dateParser']));
+            return $taskLexer;
+        });
 
     }
     
