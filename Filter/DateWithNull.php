@@ -7,7 +7,6 @@ use Kanboard\Filter\BaseFilter;
 use Kanboard\Model\TaskModel;
 use PicoDb\Database;
 use PicoDb\Table;
-use Kanboard\Core\DateParser;
 
 class DateWithNull extends BaseFilter implements FilterInterface
 {
@@ -64,13 +63,17 @@ $method = $this->parseOperator();
 $timestamp = $this->dateParser->getTimestampFromIsoFormat($this->value);
 error_log("Methode = " . $method);
 error_log("timestamp = " . $this->getTimestampFromOperator($method, $timestamp));
-            if ($method !== '') { $this->db
-                ->table(TaskModel::TABLE)
+            if ($method !== '') { $duedate = $this->db
+                ->table(self::TABLE)
                 ->beginOr()
                 ->eq('date_due', 0)
                 ->$method('date_due', $this->getTimestampFromOperator($method, $timestamp))
                 ->closeOr()
-                ->findAll();
+                ->findAllByColumn('id');
+            } 
+        
+        if (isset($duedate) && !empty($duedate)) { return $this->query->in(TaskModel::TABLE.'.id', $duedate); } else { return $this->query->in(TaskModel::TABLE.'.id', [0]); }
+    
             }
 
     }
